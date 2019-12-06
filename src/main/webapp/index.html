@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文件上传首页</title>
+    <script src="js/jquery-3.2.1.min.js"></script>   <!--要是双标签-->
+</head>
+
+<body>
+<h1>aaa</h1>
+
+    <form method="post" enctype="multipart/form-data" action="/upload2"><!--enctype处理类型，multipart/form-data表示是流的形式，upload提交的请求路径-->
+        文件1：<input type="file" name="uplodFile"><br>
+        文件2：<input type="file" name="uplodFile"><br>
+        文件3：<input type="file" name="uplodFile"><br>
+        <input type="submit" value="上传">
+
+    </form>
+
+
+    <form method="post" enctype="multipart/form-data" id="from2"><!--enctype处理类型，multipart/form-data表示是流的形式，upload提交的请求路径-->
+        文件1：<input type="file" name="uplodFile" id="file1"><br>
+        文件2：<input type="file" name="uplodFile"><br>
+        文件3：<input type="file" name="uplodFile"><br>
+        <input type="button" value="上传" id="btn">
+    </form>
+
+</body>
+
+<script>
+    $("#btn").click(function (){
+
+        var fm=new FormData();
+        fm.append("uplodFile",$("#file1")[0].files[0]);
+        console.log($("#file1")[0].files[0]);
+        $.ajax({
+            type:"post",
+            url:"ajaxupload",
+            processData:false,
+            contentType:false,
+            data:fm,
+            success:function (data) {
+                console.log(data);
+            }
+
+        });
+        
+    });
+
+</script>
+
+</html>
